@@ -6,7 +6,7 @@ git clone https://github.com/CodesbyFebin/Rust-C.git
 cd Rust-C
 cargo test
 cargo run -- vil examples/defensive.vil
-cargo run -- commit examples/defensive.vil examples/main.rc.rs
+cargo run -- commit examples/defensive.vil examples/main_rc.rs
 ```
 
 ## Hygiene Rules (must read)

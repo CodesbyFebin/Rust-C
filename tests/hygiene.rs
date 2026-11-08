@@ -3,7 +3,7 @@ use rustc_hygienic::{compile_vil, execute_ir, verify_sealed, compile_rustc, GitC
 use ed25519_dalek::{SigningKey, Signer};
 use rand::rngs::OsRng;
 fn defensive() -> String { std::fs::read_to_string("examples/defensive.vil").unwrap() }
-fn main_rs() -> String { std::fs::read_to_string("examples/main.rc.rs").unwrap() }
+fn main_rs() -> String { std::fs::read_to_string("examples/main_rc.rs").unwrap() }
 #[test]
 fn vil_compile_and_execute_400() {
     let c = compile_vil(&defensive()).unwrap();
