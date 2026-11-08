@@ -16,7 +16,6 @@ impl Agent {
     pub fn sign(&self, msg: &[u8]) -> String { hex::encode(self.signing_key.sign(msg).to_bytes()) }
     pub fn verify(&self, msg: &[u8], sig_hex: &str) -> bool {
         let bytes = match hex::decode(sig_hex) { Ok(b)=>b, Err(_)=>return false };
-        let arr: [u8;64] = match bytes.try_into() { Ok(a)=>a, Err(_)=>return false };
         let sig = match Signature::from_slice(&bytes) { Ok(s)=>s, Err(_)=>return false };
         self.verifying_key.verify(msg, &sig).is_ok()
     }
