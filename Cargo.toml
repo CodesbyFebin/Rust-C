@@ -1,0 +1,13 @@
+[package]
+name = "rustc-hygienic"
+version = "1.0.0"
+edition = "2021"
+description = "100% Rust — Hygienic Rust-C: VIL + Rust-C + Envelope + git-core + SIP + ATP, fail-closed, no mocks"
+license = "MIT"
+[dependencies]
+sha2 = "0.10"
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+hex = "0.4"
+rand = "0.8"

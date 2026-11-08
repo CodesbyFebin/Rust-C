@@ -1,0 +1,13 @@
+intent process_sales_data(
+  source: AttestedUrl,
+  budget: Budget<max_cost: 0.05 USD, ttl: 1h>
+) -> Sealed<Total>
+  effects: [read: source, pay: budget]
+  trust: zkvm(risczero) + tee-audit(sample: 0.01)
+{
+  let committed: Committed<RawBytes> = fetch(source) @TEE;
+  let validated: Validated<SalesRecord> = validate(committed, SalesRecord) @zkvm(risczero);
+  let total: Aggregated<Total> = aggregate(validated, sum(revenue)) @zkvm(risczero);
+  let escrowId: Escrow = escrow(total, price: "$0.01", budget: budget) @x402;
+  return seal(total, escrowId);
+}
